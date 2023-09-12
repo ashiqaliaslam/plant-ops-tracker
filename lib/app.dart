@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'views/home_page_view.dart';
-import 'src/profile_view.dart';
-import 'src/sign_in_view.dart';
+import 'views/profile_view.dart';
+import 'views/sign_in_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -13,7 +13,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Firebase Meetup',
+      debugShowCheckedModeBanner: false,
+      title: 'Plant Ops Tracker',
       theme: ThemeData(
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
               highlightColor: Colors.deepPurple,

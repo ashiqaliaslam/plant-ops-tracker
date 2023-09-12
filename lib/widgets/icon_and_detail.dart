@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:plant_ops_tracker/widgets/current_time.dart';
 
 class IconAndDetail extends StatelessWidget {
-  const IconAndDetail(this.icon, this.detail, {super.key});
+  const IconAndDetail(this.icon, this.detail, {super.key, this.currentTime});
   final IconData icon;
-  final String detail;
+  final String? detail;
+  final CurrentTime? currentTime;
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -13,7 +16,7 @@ class IconAndDetail extends StatelessWidget {
             Icon(icon),
             const SizedBox(width: 8),
             Text(
-              detail,
+              detail ?? DateFormat('hh:mm:ss').format(DateTime.now()),
               style: const TextStyle(fontSize: 18),
             )
           ],

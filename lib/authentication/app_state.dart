@@ -1,7 +1,3 @@
-// Copyright 2022 The Flutter Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,12 +6,16 @@ import 'package:firebase_auth/firebase_auth.dart'
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:plant_ops_tracker/enums/attending.dart';
 
 import '../firebase_options.dart';
 import '../models/guest_book_message.dart';
 
 // final authStateProvider = StateNotifierProvider((ref) => null);
+final appStateProvider =
+    ChangeNotifierProvider<ApplicationState>((ref) => ApplicationState());
 
 class ApplicationState extends ChangeNotifier {
   ApplicationState() {
@@ -40,7 +40,9 @@ class ApplicationState extends ChangeNotifier {
   int get attendees => _attendees;
 
   static Map<String, dynamic> defaultValues = <String, dynamic>{
-    'event_date': 'October 18, 2022',
+    // 'event_date': DateFormat('MMM d, y').format(DateTime.now()),
+    // // 'current_time': TimeOfDay.now().to24Hours(),
+    // 'current_time': DateFormat('hh:mm:ss').format(DateTime.now()),
     'enable_free_swag': false,
     'call_to_action': 'Join us for a day full of Firebase Workshops and Pizza!',
   };
@@ -53,9 +55,14 @@ class ApplicationState extends ChangeNotifier {
   bool get enableFreeSwag => _enableFreeSwag;
 
   // ignore: prefer_final_fields
-  String _eventDate = defaultValues['event_date'] as String;
+  String _eventDate = DateFormat('MMM d, y').format(DateTime.now());
 
   String get eventDate => _eventDate;
+
+  // ignore: prefer_final_fields
+  String _currentTime = DateFormat.Hms().format(DateTime.now());
+
+  String get currentTime => _currentTime;
 
   // ignore: prefer_final_fields
   String _callToAction = defaultValues['call_to_action'] as String;

@@ -17,3 +17,26 @@ class StyledButton extends StatelessWidget {
         child: child,
       );
 }
+
+class TitleAndValue extends StatelessWidget {
+  const TitleAndValue({
+    super.key,
+    required this.text,
+    required this.child,
+  });
+
+  final String text;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Text(text),
+        const SizedBox(width: 15),
+        child,
+      ],
+    );
+  }
+}
