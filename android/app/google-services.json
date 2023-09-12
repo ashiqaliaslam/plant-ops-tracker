@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "481212461105",
+    "project_id": "opstracker-400a1",
+    "storage_bucket": "opstracker-400a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481212461105:android:cd8215e23761b56fe02510",
+        "android_client_info": {
+          "package_name": "com.example.ops_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481212461105-r0arfe59a8pjg8h7qkpgdfkqcsn2s6m3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU9u_1Kaz-AzkwqQvTDB-bLGELnTdgMRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481212461105-r0arfe59a8pjg8h7qkpgdfkqcsn2s6m3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "481212461105-51s512p4fs85rk9766vdarfr6fi0fg70.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.opsTracker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481212461105:android:46e62d73b4764792e02510",
+        "android_client_info": {
+          "package_name": "com.example.plant_ops_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481212461105-r0arfe59a8pjg8h7qkpgdfkqcsn2s6m3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU9u_1Kaz-AzkwqQvTDB-bLGELnTdgMRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481212461105-r0arfe59a8pjg8h7qkpgdfkqcsn2s6m3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "481212461105-51s512p4fs85rk9766vdarfr6fi0fg70.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.opsTracker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
