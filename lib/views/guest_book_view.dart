@@ -5,12 +5,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:plant_ops_tracker/widgets/paragraph.dart';
 
-import 'guest_book_message.dart';
-import 'src/widgets.dart';
+import '../models/guest_book_message.dart';
+import '../widgets/styled_button.dart';
 
-class GuestBook extends StatefulWidget {
-  const GuestBook({
+class GuestBookView extends StatefulWidget {
+  const GuestBookView({
     super.key,
     required this.addMessage,
     required this.messages,
@@ -20,10 +21,10 @@ class GuestBook extends StatefulWidget {
   final List<GuestBookMessage> messages;
 
   @override
-  State<GuestBook> createState() => _GuestBookState();
+  State<GuestBookView> createState() => _GuestBookState();
 }
 
-class _GuestBookState extends State<GuestBook> {
+class _GuestBookState extends State<GuestBookView> {
   final _formKey = GlobalKey<FormState>(debugLabel: '_GuestBookState');
   final _controller = TextEditingController();
 

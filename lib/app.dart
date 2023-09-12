@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'home_page.dart';
+import 'views/home_page_view.dart';
 import 'src/profile_view.dart';
 import 'src/sign_in_view.dart';
 
@@ -35,7 +35,7 @@ final _router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const HomePage(),
+      builder: (context, state) => const HomePageView(),
       routes: [
         GoRoute(
           path: 'sign-in',

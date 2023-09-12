@@ -5,16 +5,18 @@
 import 'package:firebase_auth/firebase_auth.dart'
     hide EmailAuthProvider, PhoneAuthProvider;
 import 'package:flutter/material.dart';
+import 'package:plant_ops_tracker/widgets/header.dart';
+import 'package:plant_ops_tracker/widgets/icon_and_detail.dart';
+import 'package:plant_ops_tracker/widgets/paragraph.dart';
 import 'package:provider/provider.dart';
 
-import 'app_state.dart';
-import 'guest_book.dart';
-import 'src/authentication.dart';
-import 'src/widgets.dart';
-import 'yes_no_selection.dart';
+import '../authentication/app_state.dart';
+import 'guest_book_view.dart';
+import '../src/authentication.dart';
+import '../models/yes_no_selection.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePageView extends StatelessWidget {
+  const HomePageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,7 @@ class HomePage extends StatelessWidget {
                     onSelection: (attending) => appState.attending = attending,
                   ),
                   const Header('Discussion'),
-                  GuestBook(
+                  GuestBookView(
                     addMessage: (message) =>
                         appState.addMessageToGuestBook(message),
                     messages: appState.guestBookMessages,

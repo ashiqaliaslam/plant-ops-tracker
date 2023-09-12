@@ -3,9 +3,9 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:plant_ops_tracker/enums/attending.dart';
 
-import 'app_state.dart';
-import 'src/widgets.dart';
+import '../widgets/styled_button.dart';
 
 class YesNoSelection extends StatelessWidget {
   const YesNoSelection({

@@ -70,8 +70,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '481212461105',
     projectId: 'opstracker-400a1',
     storageBucket: 'opstracker-400a1.appspot.com',
-    androidClientId: '481212461105-6j3o5oka70gjlikuoj1nd0tspnohhj8g.apps.googleusercontent.com',
-    iosClientId: '481212461105-uo1hf3b0gttlt62k13rdihriq98rjapf.apps.googleusercontent.com',
+    androidClientId:
+        '481212461105-6j3o5oka70gjlikuoj1nd0tspnohhj8g.apps.googleusercontent.com',
+    iosClientId:
+        '481212461105-uo1hf3b0gttlt62k13rdihriq98rjapf.apps.googleusercontent.com',
     iosBundleId: 'com.example.plantOpsTracker',
   );
 }

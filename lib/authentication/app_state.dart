@@ -10,11 +10,12 @@ import 'package:firebase_auth/firebase_auth.dart'
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:plant_ops_tracker/enums/attending.dart';
 
-import 'firebase_options.dart';
-import 'guest_book_message.dart';
+import '../firebase_options.dart';
+import '../models/guest_book_message.dart';
 
-enum Attending { yes, no, unknown }
+// final authStateProvider = StateNotifierProvider((ref) => null);
 
 class ApplicationState extends ChangeNotifier {
   ApplicationState() {
