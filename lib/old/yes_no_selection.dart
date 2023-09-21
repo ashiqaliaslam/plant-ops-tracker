@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:plant_ops_tracker/enums/attending.dart';
+import 'package:plant_ops_tracker/old/attending.dart';
 
-import '../widgets/styled_button.dart';
+import '../views/widgets/styled_button.dart';
 
 class YesNoSelection extends StatelessWidget {
   const YesNoSelection({

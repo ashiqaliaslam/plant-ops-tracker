@@ -3,17 +3,17 @@ import 'package:go_router/go_router.dart';
 
 import '../widgets/styled_button.dart';
 
-class AuthFunc extends StatelessWidget {
-  const AuthFunc({
+class LoggedInView extends StatelessWidget {
+  const LoggedInView({
     super.key,
     required this.loggedIn,
     required this.signOut,
-    this.enableFreeSwag = true,
+    // this.enableFreeSwag = true,
   });
 
   final bool loggedIn;
   final void Function() signOut;
-  final bool enableFreeSwag;
+  // final bool enableFreeSwag;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class AuthFunc extends StatelessWidget {
               onPressed: () {
                 !loggedIn ? context.push('/sign-in') : signOut();
               },
-              child: !loggedIn ? const Text('RSVP') : const Text('Logout')),
+              child: !loggedIn ? const Text('Sign in') : const Text('Logout')),
         ),
         Visibility(
             visible: loggedIn,
@@ -37,16 +37,17 @@ class AuthFunc extends StatelessWidget {
                   },
                   child: const Text('Profile')),
             )),
-        Visibility(
-            visible: enableFreeSwag,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 24, bottom: 8),
-              child: StyledButton(
-                  onPressed: () {
-                    throw Exception('free swag unimplemented');
-                  },
-                  child: const Text('Free swag!')),
-            )),
+        // Visibility(
+        //   visible: enableFreeSwag,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(left: 24, bottom: 8),
+        //     child: StyledButton(
+        //         onPressed: () {
+        //           throw Exception('free swag unimplemented');
+        //         },
+        //         child: const Text('Free swag!')),
+        //   ),
+        // ),
       ],
     );
   }

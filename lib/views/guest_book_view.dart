@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:plant_ops_tracker/widgets/paragraph.dart';
+import 'package:plant_ops_tracker/views/widgets/paragraph.dart';
 
-import '../models/guest_book_message.dart';
-import '../widgets/styled_button.dart';
+import '../old/guest_book_message.dart';
+import 'widgets/styled_button.dart';
 
 class GuestBookView extends StatefulWidget {
   const GuestBookView({

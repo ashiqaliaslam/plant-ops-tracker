@@ -1,16 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart'
     hide EmailAuthProvider, PhoneAuthProvider;
 import 'package:flutter/material.dart';
-import 'package:plant_ops_tracker/widgets/header.dart';
-import 'package:plant_ops_tracker/widgets/icon_and_detail.dart';
-import 'package:plant_ops_tracker/widgets/paragraph.dart';
-import 'package:plant_ops_tracker/widgets/styled_button.dart';
-import 'package:plant_ops_tracker/widgets/time_notifier.dart';
+import 'package:plant_ops_tracker/views/widgets/icon_and_detail.dart';
+import 'package:plant_ops_tracker/views/widgets/styled_button.dart';
+import 'package:plant_ops_tracker/state/models/time_notifier.dart';
 
-import '../authentication/app_state.dart';
-import 'guest_book_view.dart';
-import '../authentication/authentication.dart';
-import '../models/yes_no_selection.dart';
+import '../state/auth/app_state.dart';
+import 'login/logged_in_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePageView extends ConsumerWidget {
@@ -51,7 +47,7 @@ class HomePageView extends ConsumerWidget {
                           text: 'Time', child: Text(dateTime.nowTime)),
                       const SizedBox(width: 50),
                       TitleAndValue(
-                          text: 'Date', child: Text(dateTime.nowDate)),
+                          text: 'Date', child: Text(dateTime.nowDateString)),
                       const SizedBox(width: 20),
                     ],
                   ),
@@ -61,7 +57,7 @@ class HomePageView extends ConsumerWidget {
                           text: 'Day Name', child: Text(dateTime.nowDayName)),
                       const SizedBox(width: 50),
                       TitleAndValue(
-                          text: 'Month', child: Text(dateTime.nowMonth)),
+                          text: 'Month', child: Text(dateTime.nowMonthName)),
                       const SizedBox(width: 20),
                     ],
                   ),
@@ -70,11 +66,12 @@ class HomePageView extends ConsumerWidget {
                       TitleAndValue(
                           text: 'Day Count',
                           child: Text(dateTime.nowDayCount.toString())),
-                      const SizedBox(width: 50),
+                      const SizedBox(width: 20),
                       TitleAndValue(
                           text: 'Week No.',
                           child: Text(dateTime.weekNumber.toString())),
                       const SizedBox(width: 20),
+                      TitleAndValue(text: 'Shift', child: Text(dateTime.shift)),
                     ],
                   ),
                 ],
@@ -85,8 +82,7 @@ class HomePageView extends ConsumerWidget {
           const IconAndDetail(Icons.factory, 'FPCL'),
           Consumer(
             builder: (context, ref, child) {
-              final appState = ref.watch(appStateProvider);
-              return AuthFunc(
+              return LoggedInView(
                 loggedIn: appState.loggedIn,
                 signOut: () {
                   FirebaseAuth.instance.signOut();
@@ -104,30 +100,30 @@ class HomePageView extends ConsumerWidget {
           ),
           // const Header("What we'll be doing"),
 
-          Paragraph(appState.callToAction),
+          // Paragraph(appState.callToAction),
 
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              switch (appState.attendees) {
-                1 => const Paragraph('1 person going'),
-                >= 2 => Paragraph('${appState.attendees} people going'),
-                _ => const Paragraph('No one going'),
-              },
-              if (appState.loggedIn) ...[
-                YesNoSelection(
-                  state: appState.attending,
-                  onSelection: (attending) => appState.attending = attending,
-                ),
-                const Header('Discussion'),
-                GuestBookView(
-                  addMessage: (message) =>
-                      appState.addMessageToGuestBook(message),
-                  messages: appState.guestBookMessages,
-                ),
-              ],
-            ],
-          ),
+          // Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     switch (appState.attendees) {
+          //       1 => const Paragraph('1 person going'),
+          //       >= 2 => Paragraph('${appState.attendees} people going'),
+          //       _ => const Paragraph('No one going'),
+          //     },
+          //     if (appState.loggedIn) ...[
+          //       YesNoSelection(
+          //         state: appState.attending,
+          //         onSelection: (attending) => appState.attending = attending,
+          //       ),
+          //       const Header('Discussion'),
+          //       GuestBookView(
+          //         addMessage: (message) =>
+          //             appState.addMessageToGuestBook(message),
+          //         messages: appState.guestBookMessages,
+          //       ),
+          //     ],
+          //   ],
+          // ),
         ],
       ),
     );

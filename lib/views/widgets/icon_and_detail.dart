@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:plant_ops_tracker/widgets/current_time.dart';
+import 'package:plant_ops_tracker/old/current_time.dart';
 
 class IconAndDetail extends StatelessWidget {
   const IconAndDetail(this.icon, this.detail, {super.key, this.currentTime});

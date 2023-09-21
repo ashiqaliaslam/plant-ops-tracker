@@ -10,6 +10,9 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SignInScreen(
+      providers: [
+        EmailAuthProvider(),
+      ],
       actions: [
         ForgotPasswordAction(((context, email) {
           final uri = Uri(
@@ -41,9 +44,18 @@ class SignInView extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             }
             context.pushReplacement('/');
+            // context.go('/');
           }),
         ),
       ],
+      // footerBuilder: (context, action) {
+      //   return Padding(
+      //     padding: const EdgeInsets.all(8),
+      //     child: action == AuthAction.signIn
+      //         ? const Text('Plant Ops Tracker')
+      //         : const SignupLinksView(),
+      //   );
+      // },
     );
   }
 }
