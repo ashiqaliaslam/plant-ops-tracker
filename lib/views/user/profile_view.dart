@@ -2,8 +2,9 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:plant_ops_tracker/state/auth/notifiers/app_state.dart';
 
-import '../state/auth/app_state.dart';
+import '../../state/auth/app_state.dart';
 
 class ProfileView extends ConsumerWidget {
   const ProfileView({
@@ -12,7 +13,7 @@ class ProfileView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appState = ref.watch(appStateProvider);
+    final appState = ref.watch(applicationStateProvider);
     // final isEmailVerified = ref.watch(userEmailVerifiedProvider);
     // final refreshLoggedInUser = ref.watch(refreshLoggedInUserProvider);
     return ProfileScreen(
@@ -32,7 +33,7 @@ class ProfileView extends ConsumerWidget {
           child: OutlinedButton(
             child: const Text('Recheck Verification State'),
             onPressed: () {
-              appState.refreshLoggedInUser();
+              ref.read(applicationStateProvider.notifier).refreshLoggedInUser();
             },
           ),
         ),

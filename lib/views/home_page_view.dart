@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart'
     hide EmailAuthProvider, PhoneAuthProvider;
 import 'package:flutter/material.dart';
+import 'package:plant_ops_tracker/state/auth/notifiers/app_state.dart';
 import 'package:plant_ops_tracker/views/widgets/icon_and_detail.dart';
 import 'package:plant_ops_tracker/views/widgets/styled_button.dart';
 import 'package:plant_ops_tracker/state/models/time_notifier.dart';
 
-import '../state/auth/app_state.dart';
 import 'login/logged_in_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -14,7 +14,7 @@ class HomePageView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appState = ref.watch(appStateProvider);
+    final appState = ref.watch(applicationStateProvider);
     return Scaffold(
       appBar: AppBar(
         leading: Image.asset(

@@ -1,9 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:plant_ops_tracker/state/auth/app_state.dart';
-import 'package:plant_ops_tracker/state/auth/auth_function.dart';
+import 'package:plant_ops_tracker/state/auth/buttons.dart';
+import 'package:plant_ops_tracker/state/auth/notifiers/app_state.dart';
 
+/// [Flutter Navigation with Router Go, article]
+// https://www.rootstrap.com/blog/flutter-navigation-with-router-go
 class AppDrawer extends ConsumerWidget {
   //  AppDrawer({
   //   Key? key,
@@ -14,16 +18,34 @@ class AppDrawer extends ConsumerWidget {
   // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appState = ref.watch(appStateProvider);
+    // final appState = ref.watch(appStateProvider);
+    final appState = ref.watch(applicationStateProvider);
     return NavigationDrawer(
       // onDestinationSelected: (int index) =>
       //     _onDestinationSelected(context, index),
       // selectedIndex: _calculateSelectedIndex(context),
       children: [
-        const UserAccountsDrawerHeader(
-          accountName: Text('aali'),
-          accountEmail: Text('example@abc.com'),
-          currentAccountPicture: FlutterLogo(),
+        UserAccountsDrawerHeader(
+          accountName: Text(appState.username),
+          accountEmail: Text(appState.email),
+          currentAccountPicture: appState.photoURL.isNotEmpty
+              ? CircleAvatar(
+                  backgroundImage: NetworkImage(appState.photoURL),
+                )
+              : const Icon(
+                  Icons.account_circle,
+                  size: 70,
+                ),
+
+          // ? CircleAvatar(
+          //     backgroundImage: NetworkImage(appState.photoURL),
+          //   )
+          // : const CircleAvatar(
+          //     child: Icon(
+          //       Icons.account_circle,
+          //       size: 70,
+          //     ),
+          //   ),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
@@ -44,10 +66,19 @@ class AppDrawer extends ConsumerWidget {
         // ),
         Consumer(
           builder: (context, ref, _) {
-            return AuthFunc(
-              loggedIn: !appState.loggedIn,
-              signOut: () => FirebaseAuth.instance.signOut(),
+            return Row(
+              children: [
+                LoginLogoutButton(
+                  loggedIn: appState.loggedIn,
+                  signOut: () => FirebaseAuth.instance.signOut(),
+                ),
+                ProfileButton(loggedIn: appState.loggedIn),
+              ],
             );
+            // return AuthFunc(
+            //   loggedIn: appState.loggedIn,
+            //   signOut: () => FirebaseAuth.instance.signOut(),
+            // );
           },
         ),
         // Consumer<ApplicationState>(

@@ -30,7 +30,6 @@ class _ScaffoldWithNavgationBarState extends State<ScaffoldWithNavgationBar> {
         selectedIndex: widget.navigationShell.currentIndex,
         onDestinationSelected: (int index) =>
             _onDestinationSelected(context, index),
-        // onDestinationSelected: _onDestinationSelected123,
         destinations:
             DestinationList.allDestinations.map((Destination destination) {
           return NavigationDestination(

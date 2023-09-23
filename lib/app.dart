@@ -7,7 +7,7 @@ import 'package:plant_ops_tracker/views/tabs/audit_list_view.dart';
 import 'package:plant_ops_tracker/views/tabs/changeover_list_view.dart';
 import 'package:plant_ops_tracker/views/tabs/talk_list_view.dart';
 
-import 'views/profile_view.dart';
+import 'views/user/profile_view.dart';
 import 'views/login/login_view.dart';
 
 class App extends StatelessWidget {
