@@ -15,15 +15,10 @@ class AppDrawer extends ConsumerWidget {
 
   const AppDrawer({super.key});
 
-  // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final appState = ref.watch(appStateProvider);
     final appState = ref.watch(applicationStateProvider);
     return NavigationDrawer(
-      // onDestinationSelected: (int index) =>
-      //     _onDestinationSelected(context, index),
-      // selectedIndex: _calculateSelectedIndex(context),
       children: [
         UserAccountsDrawerHeader(
           accountName: Text(appState.username),
@@ -54,16 +49,6 @@ class AppDrawer extends ConsumerWidget {
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
-        // Consumer(
-        //   builder: (context, ref, child) {
-        //     return LoggedInView(
-        //       loggedIn: appState.loggedIn,
-        //       signOut: () {
-        //         FirebaseAuth.instance.signOut();
-        //       },
-        //     );
-        //   },
-        // ),
         Consumer(
           builder: (context, ref, _) {
             return Row(
@@ -75,31 +60,8 @@ class AppDrawer extends ConsumerWidget {
                 ProfileButton(loggedIn: appState.loggedIn),
               ],
             );
-            // return AuthFunc(
-            //   loggedIn: appState.loggedIn,
-            //   signOut: () => FirebaseAuth.instance.signOut(),
-            // );
           },
         ),
-        // Consumer<ApplicationState>(
-        //   builder: (context, appState, _) => AuthFunc(
-        //     loggedIn: appState.loggedIn,
-        //     signOut: () {
-        //       FirebaseAuth.instance.signOut();
-        //     },
-        //     // enableFreeSwag: appState.enableFreeSwag,
-        //   ),
-        // ),
-
-        // ...DestinationList.allDestinations.map(
-        //   (Destination destination) {
-        //     return NavigationDrawerDestination(
-        //       icon: destination.icon,
-        //       selectedIcon: destination.selectedIcon,
-        //       label: Text(destination.label),
-        //     );
-        //   },
-        // ),
         const Padding(
           padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
           child: Divider(),

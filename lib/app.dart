@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:plant_ops_tracker/views/navigation/scaffold_with_navbar.dart';
 import 'package:plant_ops_tracker/views/tabs/audit_list_view.dart';
 import 'package:plant_ops_tracker/views/tabs/changeover_list_view.dart';
+import 'package:plant_ops_tracker/views/tabs/standing_orders.dart';
 import 'package:plant_ops_tracker/views/tabs/talk_list_view.dart';
 
 import 'views/user/profile_view.dart';
@@ -105,6 +106,15 @@ final _router = GoRouter(
             ),
           ],
         ),
+        StatefulShellBranch(
+          navigatorKey: _standingOrdersViewNavigatorKey,
+          routes: <RouteBase>[
+            GoRoute(
+              path: '/standing_orders',
+              builder: (context, state) => const StandingOrderView(),
+            ),
+          ],
+        ),
       ],
     ),
   ],
@@ -118,6 +128,8 @@ final GlobalKey<NavigatorState> _talksViewNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'talks');
 final GlobalKey<NavigatorState> _changeoversViewNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'changeovers');
+final GlobalKey<NavigatorState> _standingOrdersViewNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'standing_orders');
 
 
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:plant_ops_tracker/old/destinations.dart';
+import 'package:plant_ops_tracker/state/navigation_destinations.dart/destinations.dart';
 
 class ScaffoldWithNavgationBar extends StatefulWidget {
   const ScaffoldWithNavgationBar({
