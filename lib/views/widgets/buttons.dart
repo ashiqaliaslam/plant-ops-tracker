@@ -2,27 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_ops_tracker/views/widgets/styled_button.dart';
 
-class AuthFunc extends StatelessWidget {
-  const AuthFunc({
-    super.key,
-    required this.loggedIn,
-    required this.signOut,
-  });
-
-  final bool loggedIn;
-  final void Function() signOut;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        LoginLogoutButton(loggedIn: loggedIn, signOut: signOut),
-        ProfileButton(loggedIn: loggedIn),
-      ],
-    );
-  }
-}
-
 class LoginLogoutButton extends StatelessWidget {
   const LoginLogoutButton({
     super.key,
@@ -41,7 +20,9 @@ class LoginLogoutButton extends StatelessWidget {
           onPressed: () {
             !loggedIn ? context.push('/sign-in') : signOut();
           },
-          child: !loggedIn ? const Text('Sign In') : const Text('Logout')),
+          child: !loggedIn
+              ? const Text('Sign In to Create')
+              : const Text('Logout')),
     );
   }
 }

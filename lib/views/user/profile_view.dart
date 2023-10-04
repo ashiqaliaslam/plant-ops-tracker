@@ -2,9 +2,7 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:plant_ops_tracker/state/auth/notifiers/app_state.dart';
-
-import '../../state/auth/app_state.dart';
+import 'package:plant_ops_tracker/state/auth/notifiers/new_app_state.dart';
 
 class ProfileView extends ConsumerWidget {
   const ProfileView({

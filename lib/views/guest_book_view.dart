@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:plant_ops_tracker/views/widgets/paragraph.dart';
+import 'package:plant_ops_tracker/old/paragraph.dart';
 
 import '../old/guest_book_message.dart';
 import 'widgets/styled_button.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../widgets/styled_button.dart';
+import '../views/widgets/styled_button.dart';
 
 class LoggedInView extends StatelessWidget {
   const LoggedInView({
@@ -25,7 +25,8 @@ class LoggedInView extends StatelessWidget {
               onPressed: () {
                 !loggedIn ? context.push('/sign-in') : signOut();
               },
-              child: !loggedIn ? const Text('Sign in') : const Text('Logout')),
+              child:
+                  !loggedIn ? const Text('Sign in..l') : const Text('Logout')),
         ),
         Visibility(
             visible: loggedIn,

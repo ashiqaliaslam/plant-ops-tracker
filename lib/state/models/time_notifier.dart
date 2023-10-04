@@ -35,10 +35,10 @@ class DateTimeState extends StateNotifier<DateTime> {
   }
 
   String get nowDateString {
-    return DateFormat('dd MMM yy').format(nowDate);
+    return DateFormat('dd-MMM-yyyy').format(nowDate);
   }
 
-  String get nowDayName => DateFormat('EEEE').format(nowDate);
+  String get nowDayName => DateFormat('EEE').format(nowDate);
 
   int get nowDayCount => nowDate.day;
 
@@ -49,11 +49,11 @@ class DateTimeState extends StateNotifier<DateTime> {
   String get shift {
     final hours = state.hour;
     if (hours >= 7 && hours < 15) {
-      return 'Morning Shift';
+      return 'Morning';
     } else if (hours >= 15 && hours < 23) {
-      return 'Evening Shift';
+      return 'Evening';
     } else {
-      return 'Night Shift';
+      return 'Night';
     }
   }
 }

@@ -1,24 +1,34 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:plant_ops_tracker/state/auth/app_state.dart';
-import 'package:plant_ops_tracker/state/auth/buttons.dart';
-import 'package:plant_ops_tracker/state/auth/notifiers/app_state.dart';
+import 'package:plant_ops_tracker/views/widgets/buttons.dart';
+import 'package:plant_ops_tracker/state/auth/notifiers/new_app_state.dart';
 
-/// [Flutter Navigation with Router Go, article]
+/// [Flutter Navigation with go_router, article]
 // https://www.rootstrap.com/blog/flutter-navigation-with-router-go
 class AppDrawer extends ConsumerWidget {
   //  AppDrawer({
   //   Key? key,
   // }) : super(key: key ?? const ValueKey<String>('AppDrawer'));
 
-  const AppDrawer({super.key});
+  const AppDrawer({
+    super.key,
+    this.popOnSelection = false,
+  });
+
+  final bool popOnSelection;
+  // const AppDrawer({super.key});
+
+  // static final GlobalKey<ScaffoldState> scaffoldKey =
+  //     GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appState = ref.watch(applicationStateProvider);
     return NavigationDrawer(
+      // onDestinationSelected: (value) {
+      //   if (popOnSelection) Navigator.pop(context);
+      // },
       children: [
         UserAccountsDrawerHeader(
           accountName: Text(appState.username),

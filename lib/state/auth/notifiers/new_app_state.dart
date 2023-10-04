@@ -33,7 +33,6 @@ class ApplicationState extends StateNotifier<ApplicationStateData> {
   Future<void> init() async {
     FirebaseUIAuth.configureProviders([
       EmailAuthProvider(),
-      // GoogleAuthProvider(),
     ]);
 
     FirebaseAuth.instance.userChanges().listen((user) {

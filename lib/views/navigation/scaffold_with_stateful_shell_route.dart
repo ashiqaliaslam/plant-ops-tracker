@@ -16,7 +16,7 @@ class ScaffoldWithNavgationBar extends StatefulWidget {
 }
 
 class _ScaffoldWithNavgationBarState extends State<ScaffoldWithNavgationBar> {
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   // late bool showNavigationDrawer;
 

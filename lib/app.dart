@@ -2,11 +2,11 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:plant_ops_tracker/views/navigation/scaffold_with_navbar.dart';
-import 'package:plant_ops_tracker/views/tabs/audit_list_view.dart';
-import 'package:plant_ops_tracker/views/tabs/changeover_list_view.dart';
-import 'package:plant_ops_tracker/views/tabs/standing_orders.dart';
-import 'package:plant_ops_tracker/views/tabs/talk_list_view.dart';
+import 'package:plant_ops_tracker/views/navigation/scaffold_with_stateful_shell_route.dart';
+import 'package:plant_ops_tracker/views/bottom_nav_views/audits/audit_list_view.dart';
+import 'package:plant_ops_tracker/views/bottom_nav_views/changeovers/changeover_list_view.dart';
+import 'package:plant_ops_tracker/views/bottom_nav_views/instructions/standing_orders.dart';
+import 'package:plant_ops_tracker/views/bottom_nav_views/talks/talk_list_view.dart';
 
 import 'views/user/profile_view.dart';
 import 'views/login/login_view.dart';
@@ -74,6 +74,34 @@ final _router = GoRouter(
         ),
       ],
     ),
+
+    /// [Shell Route]
+    // ShellRoute(
+    //   builder: (context, state, child) {
+    //     // return ScaffoldWithNavgationBar(navigationShell:,)
+    //     return ScaffoldWithShellRoute();
+    //   },
+    //   routes: [
+    //     GoRoute(
+    //       path: '/audits',
+    //       builder: (context, state) => const AuditListView(),
+    //     ),
+    //     GoRoute(
+    //       path: '/talks',
+    //       builder: (context, state) => const TalkListView(),
+    //     ),
+    //     GoRoute(
+    //       path: '/changeovers',
+    //       builder: (context, state) => const ChangeOverListView(),
+    //     ),
+    //     GoRoute(
+    //       path: '/standing_orders',
+    //       builder: (context, state) => const StandingOrderView(),
+    //     ),
+    //   ],
+    // ),
+
+    /// [Stateful Shell Route]
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return ScaffoldWithNavgationBar(navigationShell: navigationShell);
@@ -130,7 +158,6 @@ final GlobalKey<NavigatorState> _changeoversViewNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'changeovers');
 final GlobalKey<NavigatorState> _standingOrdersViewNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'standing_orders');
-
 
 
 
