@@ -30,7 +30,6 @@ class SearchBar extends StatelessWidget {
               ),
             ),
             const CircleAvatar(
-                // TODO: add image or icon
                 // backgroundImage: AssetImage(currentUser.avatarUrl),
                 )
           ],

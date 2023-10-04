@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart' show immutable;
 @immutable
 class Strings {
   static const appName = 'Plant Ops Tracker';
-  static const wellcomeToAppName = 'Welcome to ${Strings.appName}';
+  static const welcomeToAppName = 'Welcome to ${Strings.appName}';
   static const noAudits = 'There are no audits today';
   static const noTalk = 'There is no talk today';
   static const enterYourSearchTerm =
@@ -19,6 +19,23 @@ class Strings {
   static const dontHaveGoogleAccount = 'Don\'t have a google account';
   static const signUpOn = 'Sign up on';
   static const orCreateAnAccountOn = ' or create an accout on';
+
+  static const comments = 'Comments';
+  // static const writeYourCommentHere = 'Write your comment here...';
+  // static const checkOutThisPost = 'Check out this post!';
+  // static const postDetails = 'Post Details';
+  // static const post = 'post';
+
+  // static const createNewPost = 'Create New Post';
+  // static const pleaseWriteYourMessageHere = 'Please write your message here';
+
+  static const noCommentsYet =
+      'Nobody has commented on this post yet. You can change that though, and be the first person who comments!';
+
+  static const enterYourSearchTermHere = 'Enter your search term here';
+
+  // login view rich text at bottom
+  static const dontHaveAnAccount = "Don't have an account?\n";
 
   const Strings._();
 }

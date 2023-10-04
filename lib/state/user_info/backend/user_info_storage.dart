@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart' show immutable;
 import 'package:plant_ops_tracker/state/auth/user_id.dart';
 import 'package:plant_ops_tracker/state/constants/firebase_collection_name.dart';
 import 'package:plant_ops_tracker/state/constants/firebase_field_name.dart';
+import 'package:plant_ops_tracker/state/user_info/models/role.dart';
 import 'package:plant_ops_tracker/state/user_info/models/user_info_payload.dart';
 
 @immutable
@@ -13,6 +14,7 @@ class UserInfoStorage {
     required UserId userId,
     required String displayName,
     required String? email,
+    required Role? role,
   }) async {
     try {
       // first check if we have this user's info from before
@@ -26,7 +28,8 @@ class UserInfoStorage {
         // we already have this user's profile, save the new data instead
         await userInfo.docs.first.reference.update({
           FirebaseFieldName.displayName: displayName,
-          FirebaseFieldName.email: email ?? ''
+          FirebaseFieldName.email: email ?? '',
+          // FirebaseFieldName.role: role ?? '',
         });
 
         return true;
@@ -36,6 +39,7 @@ class UserInfoStorage {
         userId: userId,
         displayName: displayName,
         email: email,
+        role: role,
       );
 
       await FirebaseFirestore.instance

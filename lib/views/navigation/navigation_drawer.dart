@@ -52,13 +52,13 @@ class AppDrawer extends ConsumerWidget {
           //     ),
           //   ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
-          child: Text(
-            'Header',
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+        //   child: Text(
+        //     'Header',
+        //     style: Theme.of(context).textTheme.titleSmall,
+        //   ),
+        // ),
         Consumer(
           builder: (context, ref, _) {
             return Row(
