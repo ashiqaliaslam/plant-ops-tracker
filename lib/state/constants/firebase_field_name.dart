@@ -7,6 +7,8 @@ class FirebaseFieldName {
   static const talkId = 'talk_id';
   static const email = 'email';
   static const displayName = 'display_name';
+  static const role = 'role';
+  static const photoURL = 'photo_url';
 
   const FirebaseFieldName._();
 }

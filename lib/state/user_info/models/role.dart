@@ -1,8 +1,8 @@
-enum Role {
-  productionManager,
-  unitManager,
-  dayEngineer,
-  shiftIncharge,
-  boardMan,
-  fieldOperator,
-}
+// enum Role {
+//   productionManager,
+//   unitManager,
+//   dayEngineer,
+//   shiftIncharge,
+//   boardMan,
+//   fieldOperator,
+// }

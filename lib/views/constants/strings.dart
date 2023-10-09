@@ -14,6 +14,7 @@ class Strings {
       'Log into your accout using one of the options below.';
 
   static const createNewAudit = 'Create New Audit';
+  static const createNewAuditHere = 'Create New Audit Here';
   static const createNewTalk = 'Create New Audit';
 
   static const dontHaveGoogleAccount = 'Don\'t have a google account';
@@ -36,6 +37,24 @@ class Strings {
 
   // login view rich text at bottom
   static const dontHaveAnAccount = "Don't have an account?\n";
+
+  // static const comment = 'comment';
+
+  static const loading = 'Loading...';
+
+  // static const person = 'person';
+  // static const people = 'people';
+  // static const likedThis = 'liked this';
+
+  static const delete = 'Delete';
+  static const areYouSureYouWantToDeleteThis =
+      'Are you sure you want to delete this';
+
+  // log out
+  static const logOut = 'Log out';
+  static const areYouSureThatYouWantToLogOutOfTheApp =
+      'Are you sure that you want to log out of the app?';
+  static const cancel = 'Cancel';
 
   const Strings._();
 }

@@ -1,4 +1,5 @@
 enum Department {
+  allDepartments,
   civil,
   electrical,
   hse,

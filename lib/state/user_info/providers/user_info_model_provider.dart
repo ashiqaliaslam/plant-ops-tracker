@@ -7,7 +7,7 @@ import 'package:plant_ops_tracker/state/constants/firebase_collection_name.dart'
 import 'package:plant_ops_tracker/state/constants/firebase_field_name.dart';
 import 'package:plant_ops_tracker/state/user_info/models/user_info.dart';
 
-final userInfoModelProvider =
+final userInfoProvider =
     StreamProvider.family.autoDispose<UserInfo, UserId>((ref, UserId userId) {
   final controller = StreamController<UserInfo>();
 
@@ -20,8 +20,11 @@ final userInfoModelProvider =
     if (snapshot.docs.isNotEmpty) {
       final doc = snapshot.docs.first;
       final json = doc.data();
-      final userInfoModel = UserInfo.fromJson(json, userId: userId);
-      controller.add(userInfoModel);
+      final userInfo = UserInfo.fromJson(
+        json,
+        userId: userId,
+      );
+      controller.add(userInfo);
     }
   });
 

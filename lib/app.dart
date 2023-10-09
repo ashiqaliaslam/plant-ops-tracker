@@ -3,9 +3,9 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:plant_ops_tracker/views/login/login_view.dart';
+import 'package:plant_ops_tracker/views/login/user_login_view.dart';
 import 'package:plant_ops_tracker/views/navigation/scaffold_with_stateful_shell_route.dart';
-import 'package:plant_ops_tracker/views/bottom_nav_views/audits/audit_list_view.dart';
+import 'package:plant_ops_tracker/views/bottom_nav_views/audits/audits_list_view.dart';
 import 'package:plant_ops_tracker/views/bottom_nav_views/changeovers/changeover_list_view.dart';
 import 'package:plant_ops_tracker/views/bottom_nav_views/instructions/standing_orders.dart';
 import 'package:plant_ops_tracker/views/bottom_nav_views/talks/talk_list_view.dart';
@@ -52,8 +52,8 @@ final _router = GoRouter(
         GoRoute(
           path: 'sign-in',
           builder: (context, state) {
-            return const SignInView();
-            // return const LoginView();
+            // return const SignInView();
+            return const UserLoginView();
           },
           routes: [
             GoRoute(

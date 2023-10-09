@@ -1,1 +1,1 @@
-enum Attending { yes, no, unknown }
+// enum Attending { yes, no, unknown }
