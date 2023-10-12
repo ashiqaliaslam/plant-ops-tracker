@@ -14,15 +14,17 @@ class SignInView extends StatelessWidget {
         EmailAuthProvider(),
       ],
       actions: [
-        ForgotPasswordAction(((context, email) {
-          final uri = Uri(
-            path: '/sign-in/forgot-password',
-            queryParameters: <String, String?>{
-              'email': email,
-            },
-          );
-          context.push(uri.toString());
-        })),
+        ForgotPasswordAction(
+          ((context, email) {
+            final uri = Uri(
+              path: '/sign-in/forgot-password',
+              queryParameters: <String, String?>{
+                'email': email,
+              },
+            );
+            context.push(uri.toString());
+          }),
+        ),
         AuthStateChangeAction(
           ((context, state) {
             final user = switch (state) {

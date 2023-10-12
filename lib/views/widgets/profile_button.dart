@@ -18,6 +18,7 @@ class ProfileButton extends StatelessWidget {
           padding: const EdgeInsets.only(left: 24, bottom: 8),
           child: StyledButton(
               onPressed: () {
+                Navigator.pop(context); // pop drawer after tapping PROFILE
                 context.push('/profile');
               },
               child: const Text('Profile')),

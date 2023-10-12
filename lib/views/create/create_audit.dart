@@ -41,7 +41,7 @@ class _CreateNewAuditViewState extends ConsumerState<CreateNewAuditView> {
     });
     return Scaffold(
       appBar: AppBar(
-        title: const Text(Strings.createNewAudit),
+        title: const Text(Strings.createAudit),
         actions: [
           IconButton(
             icon: const Icon(Icons.send),
@@ -78,7 +78,7 @@ class _CreateNewAuditViewState extends ConsumerState<CreateNewAuditView> {
               autofocus: true,
               maxLines: null,
               decoration:
-                  const InputDecoration(labelText: Strings.createNewAuditHere),
+                  const InputDecoration(labelText: Strings.createAuditHere),
             ),
           ),
 

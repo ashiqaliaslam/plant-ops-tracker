@@ -42,6 +42,31 @@ class Authenticator {
       await FirebaseAuth.instance.signInWithCredential(
         oauthCredentials,
       );
+
+      // rootNavigatorKey.currentState?.pop();
+      // AuthStateChangeAction(
+      //   ((context, state) {
+      //     final user = switch (state) {
+      //       SignedIn state => state.user,
+      //       UserCreated state => state.credential.user,
+      //       _ => null
+      //     };
+      //     if (user == null) {
+      //       return;
+      //     }
+      //     if (state is UserCreated) {
+      //       user.updateDisplayName(user.email!.split('@')[0]);
+      //     }
+      //     if (!user.emailVerified) {
+      //       user.sendEmailVerification();
+      //       const snackBar = SnackBar(
+      //           content: Text(
+      //               'Please check your email to verify your email address'));
+      //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      //     }
+      //     context.pushReplacement('/');
+      //   }),
+      // );
       return AuthResult.success;
     } catch (e) {
       return AuthResult.failure;

@@ -52,19 +52,6 @@ class Audit {
   // final bool formatAvailable;
   // final AuditStatus? auditStatus;
 
-  // Audit({
-  //   required this.auditId,
-  //   required this.auditTitle,
-  //   required this.dueShifts,
-  //   required this.dueWeeks,
-  //   required this.operatingAreas,
-  //   this.dueDates,
-  //   this.dueDays,
-  //   this.dueMonths,
-  //   this.formatAvailable = false,
-  //   this.auditStatus,
-  // });
-
   Audit({
     required this.auditId,
     required Map<String, dynamic> json,

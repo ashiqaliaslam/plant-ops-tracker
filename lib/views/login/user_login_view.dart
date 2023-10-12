@@ -39,23 +39,14 @@ class UserLoginView extends ConsumerWidget {
                     ?.copyWith(height: 1.5),
               ),
               const SizedBox(height: 20),
-              // TextButton(
-              //   style: TextButton.styleFrom(
-              //     backgroundColor: AppColors.loginButtonColor,
-              //     foregroundColor: AppColors.loginButtonTextColor,
-              //   ),
-              //   onPressed: () {
-              //     'Login with Facebook Pressed'.log();
-              //   },
-              //   child: const FacebookButton(),
-              // ),
-              const SizedBox(height: 20),
               TextButton(
                 style: TextButton.styleFrom(
                   backgroundColor: AppColors.loginButtonColor,
                   foregroundColor: AppColors.loginButtonTextColor,
                 ),
-                onPressed: ref.read(authStateProvider.notifier).loginWithGoogle,
+                onPressed: () async {
+                  ref.read(authStateProvider.notifier).loginWithGoogle;
+                },
                 child: const GoogleButton(),
               ),
               const DividerWithMargins(),

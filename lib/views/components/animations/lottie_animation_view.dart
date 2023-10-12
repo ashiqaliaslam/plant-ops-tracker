@@ -20,6 +20,19 @@ class LottieAnimationView extends StatelessWidget {
       animation.fullPath,
       reverse: reverse,
       repeat: repeat,
+      // delegates: LottieDelegates(
+      //   values: [
+      //     ValueDelegate.dropShadow(
+      //       ['**'],
+      //       value: const DropShadow(
+      //         Colors.orange: BlendMode.clear,.blue,
+      //         direction: 100,
+      //         distance: 10,
+      //         radius: 10,
+      //       ),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

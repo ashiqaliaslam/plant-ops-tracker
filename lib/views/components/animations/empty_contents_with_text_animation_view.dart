@@ -14,13 +14,15 @@ class EmptyContentsWithTextAnimationView extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(32),
+            padding: const EdgeInsets.fromLTRB(32, 72, 32, 32),
             child: Text(
               text,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(color: Colors.white54),
+              style: const TextStyle(
+                fontSize: 24,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
           const EmptyContentAnimationView(),

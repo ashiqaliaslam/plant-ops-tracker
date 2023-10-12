@@ -3,11 +3,12 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:plant_ops_tracker/views/login/user_login_view.dart';
+import 'package:plant_ops_tracker/globals.dart';
+import 'package:plant_ops_tracker/views/bottom_nav_views/instructions/instructions_main_view.dart';
+import 'package:plant_ops_tracker/views/login/sign_in_view.dart';
 import 'package:plant_ops_tracker/views/navigation/scaffold_with_stateful_shell_route.dart';
-import 'package:plant_ops_tracker/views/bottom_nav_views/audits/audits_list_view.dart';
+import 'package:plant_ops_tracker/views/bottom_nav_views/audits/audits_main_view.dart';
 import 'package:plant_ops_tracker/views/bottom_nav_views/changeovers/changeover_list_view.dart';
-import 'package:plant_ops_tracker/views/bottom_nav_views/instructions/standing_orders.dart';
 import 'package:plant_ops_tracker/views/bottom_nav_views/talks/talk_list_view.dart';
 
 import 'views/user/profile_view.dart';
@@ -43,17 +44,18 @@ class App extends StatelessWidget {
 final _router = GoRouter(
   initialLocation: '/audits',
   debugLogDiagnostics: true,
-  navigatorKey: _rootNavigatorKey,
+  navigatorKey: rootNavigatorKey,
   routes: <RouteBase>[
     GoRoute(
       path: '/',
-      builder: (context, state) => const AuditListView(),
+      name: 'audit_list_view',
+      builder: (context, state) => const AuditsMainView(),
       routes: [
         GoRoute(
           path: 'sign-in',
           builder: (context, state) {
-            // return const SignInView();
-            return const UserLoginView();
+            return const SignInView();
+            // return const UserLoginView();
           },
           routes: [
             GoRoute(
@@ -76,6 +78,63 @@ final _router = GoRouter(
         ),
       ],
     ),
+
+    /// [Stateful Shell Route]
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return ScaffoldWithNavgationBar(navigationShell: navigationShell);
+      },
+      branches: <StatefulShellBranch>[
+        StatefulShellBranch(
+          navigatorKey: _auditsViewNavigatorKey,
+          routes: <RouteBase>[
+            GoRoute(
+              path: '/audits',
+              builder: (context, state) => const AuditsMainView(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _talksViewNavigatorKey,
+          routes: <RouteBase>[
+            GoRoute(
+              path: '/talks',
+              builder: (context, state) => const TalkListView(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _changeoversViewNavigatorKey,
+          routes: <RouteBase>[
+            GoRoute(
+              path: '/changeovers',
+              builder: (context, state) => const ChangeOverListView(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _standingOrdersViewNavigatorKey,
+          routes: <RouteBase>[
+            GoRoute(
+              path: '/instructions',
+              builder: (context, state) => const InstructionsMainView(),
+            ),
+          ],
+        ),
+      ],
+    ),
+  ],
+);
+
+final GlobalKey<NavigatorState> _auditsViewNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'audits');
+final GlobalKey<NavigatorState> _talksViewNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'talks');
+final GlobalKey<NavigatorState> _changeoversViewNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'changeovers');
+final GlobalKey<NavigatorState> _standingOrdersViewNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'instructions');
+
 
     /// [Shell Route]
     // ShellRoute(
@@ -103,63 +162,10 @@ final _router = GoRouter(
     //   ],
     // ),
 
-    /// [Stateful Shell Route]
-    StatefulShellRoute.indexedStack(
-      builder: (context, state, navigationShell) {
-        return ScaffoldWithNavgationBar(navigationShell: navigationShell);
-      },
-      branches: <StatefulShellBranch>[
-        StatefulShellBranch(
-          navigatorKey: _auditsViewNavigatorKey,
-          routes: <RouteBase>[
-            GoRoute(
-              path: '/audits',
-              builder: (context, state) => const AuditListView(),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          navigatorKey: _talksViewNavigatorKey,
-          routes: <RouteBase>[
-            GoRoute(
-              path: '/talks',
-              builder: (context, state) => const TalkListView(),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          navigatorKey: _changeoversViewNavigatorKey,
-          routes: <RouteBase>[
-            GoRoute(
-              path: '/changeovers',
-              builder: (context, state) => const ChangeOverListView(),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          navigatorKey: _standingOrdersViewNavigatorKey,
-          routes: <RouteBase>[
-            GoRoute(
-              path: '/standing_orders',
-              builder: (context, state) => const StandingOrderView(),
-            ),
-          ],
-        ),
-      ],
-    ),
-  ],
-);
 
-final GlobalKey<NavigatorState> _rootNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'root');
-final GlobalKey<NavigatorState> _auditsViewNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'audits');
-final GlobalKey<NavigatorState> _talksViewNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'talks');
-final GlobalKey<NavigatorState> _changeoversViewNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'changeovers');
-final GlobalKey<NavigatorState> _standingOrdersViewNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'standing_orders');
+
+
+
 
 
 

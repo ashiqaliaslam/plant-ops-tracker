@@ -27,6 +27,7 @@ class AppStateNotifier extends StateNotifier<UserAuthState> {
     state = state.copiedWithIsLoading(true);
     await _authenticator.logOut();
     state = const UserAuthState.unKnown();
+    // rootNavigatorKey.currentState?.pushReplacementNamed('/'); // TODO: trial
   }
 
   Future<void> loginWithGoogle() async {
@@ -56,37 +57,6 @@ class AppStateNotifier extends StateNotifier<UserAuthState> {
     await currentUser.reload();
     state = state.copiedWithIsLoading(false); // false when refresh done
   }
-
-  // Future<void> refreshLoggedInUser() async {
-  //   // Set isLoading to true at the start of refreshLoggedInUser
-  //   state = state.copiedWithIsLoading(true);
-  //   // state = state.copyWith(isLoading: true);
-
-  //   final currentUser = _authenticator.currentUser;
-  //   if (currentUser == null) {
-  //     return;
-  //   }
-
-  //   // final userId = _authenticator.userId;
-
-  //   // await userId.re
-
-  //   // final currentUser = FirebaseAuth.instance.currentUser;
-  //   // if (currentUser == null) {
-  //   //   return;
-  //   // }
-
-  //   await currentUser.reload();
-  //   state = state.copiedWithIsLoading(false);
-  //   // state = state.copyWith(
-  //   //   isLoading: false,
-  //   // ); // false when refresh done
-  // }
-
-  // // method to update isLoading
-  // void setLoading(bool value) {
-  //   state = state.copyWith(isLoading: true);
-  // }
 
   Future<void> saveUserInfo({required UserId userId}) =>
       _userInfoStorage.saveUserInfo(

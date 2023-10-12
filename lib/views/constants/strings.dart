@@ -2,10 +2,13 @@ import 'package:flutter/foundation.dart' show immutable;
 
 @immutable
 class Strings {
+  static const title = 'Title';
+  static const description = 'Description';
   static const appName = 'Plant Ops Tracker';
   static const welcomeToAppName = 'Welcome to ${Strings.appName}';
   static const noAudits = 'There are no audits today';
   static const noTalk = 'There is no talk today';
+  static const noInstruction = 'There is no Standing Order right now';
   static const enterYourSearchTerm =
       'You can search in description of all audits';
   static const google = 'Google';
@@ -13,9 +16,13 @@ class Strings {
   static const logIntoYourAccount =
       'Log into your accout using one of the options below.';
 
-  static const createNewAudit = 'Create New Audit';
-  static const createNewAuditHere = 'Create New Audit Here';
-  static const createNewTalk = 'Create New Audit';
+  static const createAudit = 'Create New Audit';
+  static const createAuditHere = 'Create New Audit Here';
+  static const createTalk = 'Create New Audit';
+  static const createInstruction = 'Create Standing Order';
+  static const titleOfInstruction = 'Title of the Instruction';
+  static const descriptionOfInstruction =
+      'Description of the Instruction goes here...';
 
   static const dontHaveGoogleAccount = 'Don\'t have a google account';
   static const signUpOn = 'Sign up on';
