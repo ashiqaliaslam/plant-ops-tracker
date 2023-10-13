@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:plant_ops_tracker/state/auth/user_id.dart';
 import 'package:plant_ops_tracker/state/enums/department.dart';
+import 'package:plant_ops_tracker/state/enums/instruction_issuer.dart';
 import 'package:plant_ops_tracker/state/instructions/models/instructions_key.dart';
 
 @immutable
@@ -14,7 +15,7 @@ class Instruction {
   final List<Department?> department;
   final DateTime? createdAt;
   // final DateTime? updatedAt;
-  // final Manager instructionIssuer;
+  final InstructionIssuer? instructionIssuer;
   // final Priority? priority;
   // final bool isActive;
   // final String? comments;
@@ -33,7 +34,18 @@ class Instruction {
         // department = Department.parse(json[InstructionKey.department])
         department = (json[InstructionKey.department] as List)
             .map((department) => Department.parse(department))
-            .toList()
+            .toList(),
+        // instructionIssuer = InstructionIssuer.values.firstWhere(
+        //   (manager) => manager.name == json[InstructionKey.instructionIssuer],
+        //   orElse: () => InstructionIssuer.sop,
+        // )
+        // instructionIssuer = json[InstructionKey.instructionIssuer] != null
+        //     ? (json[InstructionKey.instructionIssuer])
+        //     : null
+        instructionIssuer = InstructionIssuer.parse(
+          json[InstructionKey.instructionIssuer],
+        )
+  // instructionIssuer = InstructionIssuer.parse(instructionIssuer.toString())
 
   // / [working]
   // department = Department.values.firstWhere(

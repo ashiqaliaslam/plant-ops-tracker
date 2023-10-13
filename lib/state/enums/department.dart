@@ -1,5 +1,13 @@
 import 'package:plant_ops_tracker/extensions/log.dart';
 
+/// ```dart
+/// print(Department.civil);   /// Department.civil
+/// print(Department.civil.index);   /// 1
+/// print(Department.civil.hashCode);   /// 927867746
+/// print(Department.civil.runtimeType);   /// Department
+/// print(Department.civil.toString());   /// Department.civil
+/// ```
+
 enum Department {
   allDepartments,
   civil,
@@ -28,6 +36,10 @@ enum Department {
     Department.machinery: 'Machinery',
   };
 
+  /// ```dart
+  /// print(Department.civil.name);    /// Civil
+  /// ```
+
   String get name => _nameMap[this]!;
 
   // static Department? parse(String name) {
@@ -45,6 +57,16 @@ enum Department {
   //   'Matched Department ${matchingEntry.key.name}'.log();
   //   return matchingEntry.key;
   // }
+
+  ///```dart
+  /// print(Department.parse('civil'));   /// Department.civil
+  /// print(Department.parse('civil') as Department);   /// Department.civil
+  /// print(Department.values.first);   /// Department.allDepartments
+  /// print(Department.values.firstWhere((dep) => dep.name.toString().toLowerCase() == 'inspection'));
+  /// // Department.inspection
+  /// print(Department.parse('hse'));   /// Department.hse
+  /// ```
+
   static Department? parse(String name) {
     'Parsing Department name $name'.log();
     final matchingEntry = Department.values.firstWhere(
@@ -57,6 +79,10 @@ enum Department {
     return matchingEntry;
   }
 }
+
+
+
+
 
 
 // void main() {

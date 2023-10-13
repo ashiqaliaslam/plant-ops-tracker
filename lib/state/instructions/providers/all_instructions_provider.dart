@@ -4,12 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:plant_ops_tracker/state/constants/firebase_collection_name.dart';
 import 'package:plant_ops_tracker/state/instructions/models/instructions.dart';
+import 'package:plant_ops_tracker/state/instructions/models/instructions_key.dart';
 
 final allInstructionsProvider = StreamProvider<Iterable<Instruction>>((ref) {
   final controller = StreamController<Iterable<Instruction>>();
 
   final sub = FirebaseFirestore.instance
       .collection(FirebaseCollectionName.instructions)
+      .orderBy(InstructionKey.createdAt, descending: true) // new addition
       // .where(FirebaseFieldName.instructionId) // TODO:s
       .snapshots()
       .listen((snapshot) {

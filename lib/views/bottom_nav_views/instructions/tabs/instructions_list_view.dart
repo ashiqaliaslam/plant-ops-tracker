@@ -38,6 +38,8 @@ class InstructionsListView extends ConsumerWidget {
                       Text(instruction.description ?? 'No Description');
                   final createdAt =
                       Text(instruction.createdAt?.toString() ?? '');
+                  final instructionIssuer =
+                      Text(instruction.instructionIssuer?.name ?? '');
 
                   // final departments = Text(instruction.department?.name ?? '');
                   // final department =
@@ -64,6 +66,7 @@ class InstructionsListView extends ConsumerWidget {
                           const SizedBox(height: 10),
                           createdAt,
                           const SizedBox(height: 10),
+                          instructionIssuer,
                           Wrap(
                             spacing: 8.0, // gap between adjacent chips
                             runSpacing: 4.0, // gap between lines
