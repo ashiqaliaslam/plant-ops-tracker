@@ -16,6 +16,11 @@ class ScaffoldWithNavgationBar extends StatefulWidget {
 }
 
 class _ScaffoldWithNavgationBarState extends State<ScaffoldWithNavgationBar> {
+  // final List<String> noNavBarRoutes = [
+  //   '/add-steps',
+  //   // '/another-route',
+  // ];
+
   // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   // late bool showNavigationDrawer;

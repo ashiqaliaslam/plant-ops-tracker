@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:plant_ops_tracker/views/bottom_nav_views/audits/tabs/custom_search_audits.dart';
-import 'package:plant_ops_tracker/views/create/create_audit.dart';
+import 'package:plant_ops_tracker/views/create/create_audits/create_audit.dart';
 import 'package:plant_ops_tracker/views/navigation/navigation_drawer.dart';
 import 'package:plant_ops_tracker/views/bottom_nav_views/audits/tabs/current_audits.dart';
 import 'package:plant_ops_tracker/views/bottom_nav_views/audits/tabs/today_audits.dart';

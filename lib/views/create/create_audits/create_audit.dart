@@ -69,40 +69,41 @@ class _CreateNewAuditViewState extends ConsumerState<CreateNewAuditView> {
         ],
       ),
       body: SingleChildScrollView(
-          child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: auditController,
-              autofocus: true,
-              maxLines: null,
-              decoration:
-                  const InputDecoration(labelText: Strings.createAuditHere),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: auditController,
+                autofocus: true,
+                maxLines: null,
+                decoration:
+                    const InputDecoration(labelText: Strings.createAuditHere),
+              ),
             ),
-          ),
 
-          // DropdownButton<ShiftGroup>(
-          //   hint: const Text("Select Shift Group"),
-          //   value: selectedShiftGroup,
-          //   onChanged: (ShiftGroup? newGroup) {
-          //     setState(() {
-          //       selectedShiftGroup = newGroup;
-          //       if (newGroup != null) {
-          //         dueShiftGroups.add(newGroup);
-          //       }
-          //     });
-          //   },
-          //   items: ShiftGroup.values
-          //       .map<DropdownMenuItem<ShiftGroup>>((ShiftGroup shiftGroup) {
-          //     return DropdownMenuItem<ShiftGroup>(
-          //       value: shiftGroup,
-          //       child: Text(shiftGroup.toString().split('.').last),
-          //     );
-          //   }).toList(),
-          // ),
-        ],
-      )),
+            // DropdownButton<ShiftGroup>(
+            //   hint: const Text("Select Shift Group"),
+            //   value: selectedShiftGroup,
+            //   onChanged: (ShiftGroup? newGroup) {
+            //     setState(() {
+            //       selectedShiftGroup = newGroup;
+            //       if (newGroup != null) {
+            //         dueShiftGroups.add(newGroup);
+            //       }
+            //     });
+            //   },
+            //   items: ShiftGroup.values
+            //       .map<DropdownMenuItem<ShiftGroup>>((ShiftGroup shiftGroup) {
+            //     return DropdownMenuItem<ShiftGroup>(
+            //       value: shiftGroup,
+            //       child: Text(shiftGroup.toString().split('.').last),
+            //     );
+            //   }).toList(),
+            // ),
+          ],
+        ),
+      ),
     );
   }
 }

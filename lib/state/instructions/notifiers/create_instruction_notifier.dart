@@ -4,6 +4,7 @@ import 'package:plant_ops_tracker/state/audits/typedefs/is_loading.dart';
 import 'package:plant_ops_tracker/state/constants/firebase_collection_name.dart';
 import 'package:plant_ops_tracker/state/enums/department.dart';
 import 'package:plant_ops_tracker/state/enums/instruction_issuer.dart';
+import 'package:plant_ops_tracker/state/enums/priority.dart';
 import 'package:plant_ops_tracker/state/instructions/models/instruction_payload.dart';
 
 // class ImageUploadNotifier extends StateNotifier<IsLoading>
@@ -18,6 +19,9 @@ class CreateInstructionNotifier extends StateNotifier<IsLoading> {
     required String description,
     required List<Department?> department,
     required InstructionIssuer? instructionIssuer,
+    required PriorityLevel? priority,
+    required bool isActive,
+    required List<String?> steps,
   }) async {
     isLoading = true;
 
@@ -28,6 +32,9 @@ class CreateInstructionNotifier extends StateNotifier<IsLoading> {
         description: description,
         department: department,
         instructionIssuer: instructionIssuer,
+        priority: priority,
+        isActive: isActive,
+        steps: steps,
       );
       await FirebaseFirestore.instance
           .collection(FirebaseCollectionName.instructions)

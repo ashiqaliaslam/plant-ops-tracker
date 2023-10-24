@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:plant_ops_tracker/state/auth/user_id.dart';
 import 'package:plant_ops_tracker/state/enums/department.dart';
 import 'package:plant_ops_tracker/state/enums/instruction_issuer.dart';
+import 'package:plant_ops_tracker/state/enums/priority.dart';
 import 'package:plant_ops_tracker/state/instructions/models/instructions_key.dart';
 
 class InstructionPayload extends MapView<String, dynamic> {
@@ -13,6 +14,9 @@ class InstructionPayload extends MapView<String, dynamic> {
     required String description,
     required List<Department?> department,
     required InstructionIssuer? instructionIssuer,
+    required PriorityLevel? priority,
+    required bool isActive,
+    required List<String?> steps,
   }) : super({
           InstructionKey.userId: userId,
           InstructionKey.title: title,
@@ -23,5 +27,8 @@ class InstructionPayload extends MapView<String, dynamic> {
               .toList(),
           InstructionKey.instructionIssuer:
               instructionIssuer.toString().split('.').last,
+          InstructionKey.priority: priority.toString().split('.').last,
+          InstructionKey.isActive: isActive,
+          InstructionKey.steps: steps,
         });
 }
