@@ -6,7 +6,7 @@ class InstructionKey {
   static const userId = 'uid';
   static const title = 'instruction_title';
   static const description = 'instruction_description';
-  static const steps = 'instruction_steps';
+  // static const steps = 'instruction_steps';
   static const department = 'departments';
   static const createdAt = 'created_at';
   static const updatedAt = 'updated_at';

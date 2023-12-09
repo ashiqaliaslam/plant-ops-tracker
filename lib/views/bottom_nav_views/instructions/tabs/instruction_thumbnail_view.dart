@@ -6,114 +6,7 @@ import 'package:plant_ops_tracker/views/bottom_nav_views/instructions/date_view.
 import 'package:plant_ops_tracker/views/components/dialogs/alert_dialog_model.dart';
 import 'package:plant_ops_tracker/views/components/dialogs/delete_dialog.dart';
 import 'package:plant_ops_tracker/views/components/hight_of.dart';
-
-// class InstructionThumbnailView extends ConsumerStatefulWidget {
-//   final Instruction instruction;
-//   final VoidCallback onTapped;
-//   const InstructionThumbnailView({
-//     super.key,
-//     required this.instruction,
-//     required this.onTapped,
-//   });
-
-//   @override
-//   ConsumerState<ConsumerStatefulWidget> createState() =>
-//       _InstructionThumbnailViewState();
-// }
-
-// class _InstructionThumbnailViewState
-//     extends ConsumerState<InstructionThumbnailView> {
-//   @override
-//   Widget build(BuildContext context) {
-//     final canDeleteInstruction =
-//         ref.watch(canCurrentUserDeleteInstructionProvider(widget.instruction));
-//     return GestureDetector(
-//       onTap: widget.onTapped,
-//       child: Card(
-//         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//         // elevation: 4,
-//         margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
-//         child: Column(
-//           children: [
-//             Padding(
-//               padding: const EdgeInsets.all(8.0),
-//               child: Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Text(
-//                     widget.instruction.title,
-//                     style: const TextStyle(
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                   if (canDeleteInstruction.value ?? false)
-//                     PopupMenuButton(
-//                       icon: const Icon(Icons.more_horiz),
-//                       itemBuilder: (context) {
-//                         return [
-//                           const PopupMenuItem(
-//                             value: 1,
-//                             child: Row(
-//                               children: [
-//                                 Icon(
-//                                   Icons.delete,
-//                                   color: Colors.red,
-//                                 ),
-//                                 SizedBox(width: 1),
-//                                 Text('Delete'),
-//                               ],
-//                             ),
-//                           )
-//                         ];
-//                       },
-//                       onSelected: (value) async {
-//                         if (value == 1) {
-//                           final shouldDeleteInstruction = await DeleteDialog(
-//                                   titleOfObjectToDelete: 'Standing Order')
-//                               .present(context)
-//                               .then((shouldDelete) => shouldDelete ?? false);
-//                           if (shouldDeleteInstruction) {
-//                             await ref
-//                                 .read(deleteInstructionProvider.notifier)
-//                                 .deleteInstruction(
-//                                     instructionId:
-//                                         widget.instruction.instructionId);
-//                             // if (mounted) {
-//                             //   Navigator.of(context).pop();
-//                             // }
-//                           }
-//                         }
-//                       },
-//                     )
-//                   // IconButton(
-//                   //   icon: const Icon(Icons.more_horiz),
-//                   //   onPressed: () {
-//                   //     showDialog(
-//                   //       context: context,
-//                   //       builder: (context) {
-//                   //         return AlertDialog(
-//                   //           title: Text('Delete Instruction'),
-//                   //           content: Text('Are you sure?'),
-//                   //           actions: [
-//                   //             TextButton(
-//                   //               onPressed: () {},
-//                   //               child: Text('Delete'),
-//                   //             )
-//                   //           ],
-//                   //         );
-//                   //       },
-//                   //     );
-//                   //   },
-//                   // )
-//                 ],
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:plant_ops_tracker/views/create/create_instructions/edit_instruction.dart';
 
 class InstructionThumbnailView extends ConsumerWidget {
   final Instruction instruction;
@@ -178,12 +71,20 @@ class InstructionThumbnailView extends ConsumerWidget {
                               value: 1,
                               child: Row(
                                 children: [
-                                  Icon(
-                                    Icons.delete,
-                                    color: Colors.red,
-                                  ),
-                                  SizedBox(width: 1),
+                                  Icon(Icons.delete, color: Colors.red),
+                                  SizedBox(width: 3),
                                   Text('Delete'),
+                                  // IconButton(onPressed: onPressed, icon: icon)
+                                ],
+                              ),
+                            ),
+                            const PopupMenuItem(
+                              value: 2,
+                              child: Row(
+                                children: [
+                                  Icon(Icons.edit, color: Colors.blue),
+                                  SizedBox(width: 3),
+                                  Text('Edit'),
                                 ],
                               ),
                             )
@@ -204,6 +105,15 @@ class InstructionThumbnailView extends ConsumerWidget {
                               //   Navigator.of(context).pop();
                               // }
                             }
+                          } else if (value == 2) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditInstructionView(
+                                  instruction: instruction,
+                                ),
+                              ),
+                            );
                           }
                         },
                       )
@@ -250,7 +160,7 @@ class InstructionThumbnailView extends ConsumerWidget {
                         ),
                       ),
                       const Spacer(),
-                      DateView(dateTime: instruction.createdAt!),
+                      DateView(dateTime: instruction.createdAt),
                     ],
                   ),
                 ],
@@ -270,46 +180,3 @@ class InstructionThumbnailView extends ConsumerWidget {
     );
   }
 }
-
-// ListTile(
-//   contentPadding: const EdgeInsets.all(8),
-//   horizontalTitleGap: 20,
-//   title: Container(
-//     padding: const EdgeInsets.fromLTRB(0, 0, 0, 12),
-//     child: Text(
-//       instruction.title,
-//       style: Theme.of(context).textTheme.labelLarge,
-//       maxLines: 2,
-//       overflow: TextOverflow.ellipsis,
-//     ),
-//   ),
-//   subtitle: Text(
-//     instruction.description ?? '',
-//     style: Theme.of(context).textTheme.bodyMedium,
-//     maxLines: 3,
-//     overflow: TextOverflow.ellipsis,
-//   ),
-// ),
-
-// Padding(
-//   padding: const EdgeInsets.all(8.0),
-//   child: Column(
-//     crossAxisAlignment: CrossAxisAlignment.start,
-//     children: [
-//       Text(
-//         instruction.title,
-//         style: Theme.of(context).textTheme.labelLarge,
-//         maxLines: 2,
-//         overflow: TextOverflow.ellipsis,
-
-//       ),
-//       const HightOf(8),
-//       Text(
-//         instruction.description ?? '',
-//         style: Theme.of(context).textTheme.bodyMedium,
-//         maxLines: 3,
-//         overflow: TextOverflow.ellipsis,
-//       ),
-//     ],
-//   ),
-// ),

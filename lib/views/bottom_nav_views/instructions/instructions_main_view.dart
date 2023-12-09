@@ -12,49 +12,31 @@ class InstructionsMainView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const tabBars = [
-      Tab(icon: Icon(Icons.menu_book)),
-      // Tab(icon: Icon(Icons.search)),
-    ];
-
-    const tabBarChildren = [
-      InstructionsListView(),
-      // InstructionsSearchView(),
-    ];
-
-    return DefaultTabController(
-      length: tabBars.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Standing Orders'),
-          bottom: const TabBar(
-            tabs: tabBars,
-          ),
-        ),
-        body: const TabBarView(
-          children: tabBarChildren,
-        ),
-        drawer: const AppDrawer(),
-        floatingActionButton: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData && snapshot.data != null) {
-              return FloatingActionButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CreateInstructionView(),
-                    ),
-                  );
-                },
-                child: const Icon(Icons.add),
-              );
-            } else {
-              return Container();
-            }
-          },
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Standing Orders'),
+      ),
+      body: const InstructionsListView(),
+      drawer: const AppDrawer(),
+      floatingActionButton: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData && snapshot.data != null) {
+            return FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CreateInstructionView(),
+                  ),
+                );
+              },
+              child: const Icon(Icons.add),
+            );
+          } else {
+            return Container();
+          }
+        },
       ),
     );
   }

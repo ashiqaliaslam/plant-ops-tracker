@@ -5,35 +5,45 @@ import 'package:plant_ops_tracker/state/auth/providers/user_id_provider.dart';
 import 'package:plant_ops_tracker/state/enums/department.dart';
 import 'package:plant_ops_tracker/state/enums/instruction_issuer.dart';
 import 'package:plant_ops_tracker/state/enums/priority.dart';
+import 'package:plant_ops_tracker/state/instructions/models/instructions.dart';
 import 'package:plant_ops_tracker/state/instructions/providers/create_instruction_provider.dart';
 import 'package:plant_ops_tracker/views/components/hight_of.dart';
-import 'package:plant_ops_tracker/views/constants/strings.dart';
+import 'package:plant_ops_tracker/views/create/create_instructions/components/active_toggle_button.dart';
+import 'package:plant_ops_tracker/views/create/create_instructions/components/department_selection.dart';
+import 'package:plant_ops_tracker/views/create/create_instructions/components/description_field.dart';
+import 'package:plant_ops_tracker/views/create/create_instructions/components/instruction_issuer_dropdown.dart';
+import 'package:plant_ops_tracker/views/create/create_instructions/components/priority_selection.dart';
+import 'package:plant_ops_tracker/views/create/create_instructions/components/title_field.dart';
 
-import 'components/index_create_components.dart';
+class EditInstructionView extends StatefulHookConsumerWidget {
+  final Instruction instruction;
 
-class CreateInstructionView extends StatefulHookConsumerWidget {
-  const CreateInstructionView({super.key});
+  const EditInstructionView({
+    super.key,
+    required this.instruction,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _CreateInstructionViewState();
+      _EditInstructionViewState();
 }
 
-class _CreateInstructionViewState extends ConsumerState<CreateInstructionView> {
+class _EditInstructionViewState extends ConsumerState<EditInstructionView> {
   @override
   Widget build(BuildContext context) {
-    // Initialize a state variable 'selectedPriority' with the useState hook.
-    // The useState hook returns a stateful value that can be read
-    // (selectedPriority.value) and written (selectedPriority.value = newValue).
-    final priorityController = useTextEditingController();
-    final titleController = useTextEditingController();
-    final descriptionController = useTextEditingController();
-    final instructionIssuerController = useTextEditingController();
-    final departmentsList = useState<List<Department>>([]);
-    final isActive = useState(true);
-    // final stepsList = useState<List<String>>([]);
+    final priorityController =
+        useTextEditingController(text: widget.instruction.priority.toString());
+    final titleController =
+        useTextEditingController(text: widget.instruction.title);
+    final descriptionController =
+        useTextEditingController(text: widget.instruction.description);
+    final instructionIssuerController = useTextEditingController(
+        text: widget.instruction.instructionIssuer.toString());
+    final departmentsList = useState<List<Department>>(
+        widget.instruction.department.whereType<Department>().toList());
+    final isActive = useState(widget.instruction.isActive);
 
-    final isButtonEnabled = useState(false);
+    final isButtonEnabled = useState(true);
 
     useEffect(() {
       void listener() {
@@ -41,7 +51,7 @@ class _CreateInstructionViewState extends ConsumerState<CreateInstructionView> {
                 descriptionController.text.isNotEmpty &&
                 departmentsList.value.isNotEmpty &&
                 priorityController.text.isNotEmpty
-            // commentsff
+            // add more if necessary
             ;
       }
 
@@ -49,20 +59,20 @@ class _CreateInstructionViewState extends ConsumerState<CreateInstructionView> {
       descriptionController.addListener(listener);
       instructionIssuerController.addListener(listener);
       priorityController.addListener(listener);
-      departmentsList.addListener(listener); // yes or no ??
+      departmentsList.addListener(listener);
 
       return () {
         titleController.removeListener(listener);
         descriptionController.removeListener(listener);
         instructionIssuerController.removeListener(listener);
         priorityController.removeListener(listener);
-        departmentsList.removeListener(listener); // yes or no ??
+        departmentsList.removeListener(listener);
       };
     });
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(Strings.createInstruction),
+        title: const Text('Edit Standing Order'),
         actions: [
           IconButton(
             onPressed: isButtonEnabled.value
@@ -79,10 +89,11 @@ class _CreateInstructionViewState extends ConsumerState<CreateInstructionView> {
                     if (userId == null) {
                       return;
                     }
-                    // final isCreated = await
+                    // final isUpdated = await
                     ref
                         .read(createInstructionProvider.notifier)
-                        .createInstruction(
+                        .updateInstruction(
+                          instructionId: widget.instruction.instructionId,
                           userId: userId,
                           title: title,
                           description: description,
@@ -90,10 +101,8 @@ class _CreateInstructionViewState extends ConsumerState<CreateInstructionView> {
                           instructionIssuer: instructionIssuer,
                           priority: priority,
                           isActive: isActive.value,
-
-                          // steps: stepsList.value,
                         );
-                    // if (isCreated && mounted) {
+                    // if (isUpdated && mounted) {
                     if (mounted) {
                       Navigator.pop(context);
                     }
@@ -113,44 +122,13 @@ class _CreateInstructionViewState extends ConsumerState<CreateInstructionView> {
               DescriptionField(descriptionController: descriptionController),
               InstructionIssuerDropdown(
                 instructionIssuerController: instructionIssuerController,
+                initialInstructionIssuer: widget.instruction.instructionIssuer,
               ),
               const HightOf(),
-              // StepsReorderableList(stepsList: stepsList.value),
-              // StepsReorderableListView(stepsList: stepsList.value),
-              // StepsListView(stepsList: stepsList.value),
-              // const HightOf(10),
-              // AddStepButton(
-              //   onPressed: () {
-              //     stepsList.value = List.from(stepsList.value)..add('');
-              //   },
-              // ),
-              // AddStepButton(
-              //   onPressed: () async {
-              //     final newSteps = await Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) =>
-              //             AddStepsView(initialSteps: stepsList.value),
-              //       ),
-              //     );
-              //     if (newSteps != null) {
-              //       stepsList.value = newSteps;
-              //     }
-              //   },
-              // ),
-              // AddStepButton(
-              //   onPressed: () async {
-              //     final newSteps =
-              //         await context.go('/add-steps', stepsList.value);
-              //     if (newSteps != null) {
-              //       stepsList.value = newSteps;
-              //     }
-              //   },
-              // ),
-
               const HightOf(),
               PrioritySelectionContainer(
                 priorityController: priorityController,
+                initialPriority: widget.instruction.priority,
               ),
               const HightOf(),
               DepartmentSelection(

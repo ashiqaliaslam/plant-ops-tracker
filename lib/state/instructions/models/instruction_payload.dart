@@ -16,7 +16,7 @@ class InstructionPayload extends MapView<String, dynamic> {
     required InstructionIssuer? instructionIssuer,
     required PriorityLevel? priority,
     required bool isActive,
-    required List<String?> steps,
+    // required List<String?> steps,
   }) : super({
           InstructionKey.userId: userId,
           InstructionKey.title: title,
@@ -29,6 +29,6 @@ class InstructionPayload extends MapView<String, dynamic> {
               instructionIssuer.toString().split('.').last,
           InstructionKey.priority: priority.toString().split('.').last,
           InstructionKey.isActive: isActive,
-          InstructionKey.steps: steps,
+          // InstructionKey.steps: steps,
         });
 }

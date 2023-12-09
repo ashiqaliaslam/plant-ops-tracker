@@ -5,15 +5,17 @@ import 'package:plant_ops_tracker/views/components/hight_of.dart';
 
 class PrioritySelectionContainer extends HookWidget {
   final TextEditingController priorityController;
+  final PriorityLevel? initialPriority; // new
 
   const PrioritySelectionContainer({
     super.key,
     required this.priorityController,
+    this.initialPriority,
   });
 
   @override
   Widget build(BuildContext context) {
-    final selectedPriority = useState<PriorityLevel?>(null);
+    final selectedPriority = useState<PriorityLevel?>(initialPriority);
 
     return Container(
       decoration: BoxDecoration(

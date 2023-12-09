@@ -13,14 +13,12 @@ class Instruction {
   final UserId userId;
   final String title;
   final String? description;
-  final List<String?> steps;
   final List<Department?> department;
-  final DateTime? createdAt;
-  // final DateTime? updatedAt;
+  final DateTime createdAt;
+  final DateTime? updatedAt;
   final InstructionIssuer? instructionIssuer;
   final PriorityLevel? priority;
   final bool isActive;
-  // final String? comments;
 
   Instruction({
     required this.instructionId,
@@ -30,8 +28,12 @@ class Instruction {
         description = json[InstructionKey.description] != null
             ? json[InstructionKey.description] as String
             : null,
+        // createdAt = (json[InstructionKey.createdAt] as Timestamp).toDate(),
         createdAt = json[InstructionKey.createdAt] != null
             ? (json[InstructionKey.createdAt] as Timestamp).toDate()
+            : DateTime.now(), // Provide a default value
+        updatedAt = json[InstructionKey.updatedAt] != null
+            ? (json[InstructionKey.updatedAt] as Timestamp).toDate()
             : null,
         department = (json[InstructionKey.department] as List)
             .map((department) => Department.parse(department))
@@ -40,9 +42,5 @@ class Instruction {
           json[InstructionKey.instructionIssuer],
         ),
         priority = PriorityLevel.parse(json[InstructionKey.priority]),
-        isActive = json[InstructionKey.isActive],
-        steps = List<String>.from(json[InstructionKey.steps] ?? [])
-
-  // add more fields
-  ;
+        isActive = json[InstructionKey.isActive];
 }

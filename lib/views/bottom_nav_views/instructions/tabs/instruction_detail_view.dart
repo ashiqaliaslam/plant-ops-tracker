@@ -10,6 +10,7 @@ import 'package:plant_ops_tracker/views/components/animations/small_error_animat
 import 'package:plant_ops_tracker/views/components/dialogs/alert_dialog_model.dart';
 import 'package:plant_ops_tracker/views/components/dialogs/delete_dialog.dart';
 import 'package:plant_ops_tracker/views/components/hight_of.dart';
+import 'package:plant_ops_tracker/views/create/create_instructions/edit_instruction.dart';
 
 class InstructionDetailsView extends ConsumerStatefulWidget {
   final Instruction instruction;
@@ -27,10 +28,6 @@ class _InstructionDetailsViewState
     extends ConsumerState<InstructionDetailsView> {
   @override
   Widget build(BuildContext context) {
-    // final request = RequestForInstruction(
-    //   instructionId: widget.instruction.instructionId,
-    //   sortByCreatedAt: true,
-    // );
     final instructionId = widget.instruction.instructionId;
 
     // get the actual instruction
@@ -43,7 +40,7 @@ class _InstructionDetailsViewState
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Standing Order Detail'),
+        title: const Text('Standing Order'),
         actions: [
           if (canDeleteInstruction.value ?? false)
             IconButton(
@@ -74,28 +71,108 @@ class _InstructionDetailsViewState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(
-                    isActive ? Icons.check : Icons.cancel,
-                    color: isActive ? Colors.green : Colors.red,
-                  ),
-                  Text(
-                    thisInstruction.title,
-                    style: Theme.of(context).textTheme.headlineSmall,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Instruction by'),
+                      Text(
+                        thisInstruction.instructionIssuer?.name ?? '',
+                        style: const TextStyle(
+                          color: Colors.blue,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
                   ),
                   const HightOf(),
-                  Text(thisInstruction.description ?? ''),
-                  const HightOf(),
-                  ListTile(
-                    title: const Text('Instruction Issuer'),
-                    subtitle:
-                        Text(thisInstruction.instructionIssuer?.name ?? ''),
+                  Row(
+                    children: [
+                      const Text('Priority: '),
+                      const SizedBox(width: 5),
+                      Text(
+                        thisInstruction.priority?.name ?? '',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          color: _getPriorityColor(
+                            thisInstruction.priority?.name,
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      const Text('Status: '),
+                      const SizedBox(width: 5),
+                      Text(
+                        isActive ? 'Active' : 'Inactive',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          color: isActive ? Colors.green : Colors.red,
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Icon(
+                        isActive ? Icons.check_circle : Icons.cancel,
+                        color: isActive ? Colors.green : Colors.red,
+                      ),
+                    ],
                   ),
+                  // ListTile(
+                  //   title: const Text('Priority'),
+                  //   subtitle: Wrap(
+                  //     children: [
+                  //       Chip(label: Text(thisInstruction.priority?.name ?? ''))
+                  //     ],
+                  //   ),
+                  // ),
+                  // ListTile(
+                  //   title: const Text('Instruction by'),
+                  //   subtitle: Text(
+                  //     thisInstruction.instructionIssuer?.name ?? '',
+                  //   ),
+                  // ),
+                  const HightOf(),
+                  Card(
+                    margin: const EdgeInsets.all(0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // const Row(
+                          //   children: [
+                          //     // Icon(Icons.integration_instructions),
+                          //     // SizedBox(width: 8),
+                          //     // Text('Title'),
+                          //   ],
+                          // ),
+                          // const HightOf(5),
+                          Text(
+                            thisInstruction.title,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 18,
+                            ),
+                          ),
+                          const Divider(),
+                          Text(
+                            thisInstruction.description ?? '',
+                            style: const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
                   const HightOf(),
                   ListTile(
                     title: const Text('Department'),
                     subtitle: Wrap(
-                      spacing: 8.0, // gap between adjacent chips
-                      runSpacing: 4.0, // gap between lines
+                      spacing: 8.0,
+                      runSpacing: 4.0,
                       children: thisInstruction.department
                           .map((department) =>
                               Chip(label: Text(department?.name ?? '')))
@@ -103,34 +180,16 @@ class _InstructionDetailsViewState
                     ),
                   ),
                   const HightOf(),
-                  ListTile(
-                    title: const Text('Priority'),
-                    subtitle: Wrap(
-                      children: [
-                        Chip(label: Text(thisInstruction.priority?.name ?? ''))
-                      ],
-                    ),
-                  ),
-                  const HightOf(),
-                  const HightOf(),
-                  Text('Steps',
-                      style: Theme.of(context).textTheme.headlineSmall),
-                  for (var step in thisInstruction.steps)
-                    Card(
-                      elevation: 4,
-                      // color: Colors.lightBlueAccent,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(step ?? ''),
-                      ),
-                    ),
+
                   const HightOf(),
                   ListTile(
-                    title: const Text('Created At'),
-                    subtitle: thisInstruction.createdAt != null
-                        ? DateTimeView(dateTime: thisInstruction.createdAt!)
-                        : Container(),
-                  )
+                      title: const Text('Created At'),
+                      subtitle:
+                          // thisInstruction.createdAt != null
+                          // ?
+                          DateTimeView(dateTime: thisInstruction.createdAt)
+                      // : Container(),
+                      )
                 ],
               ),
             ),
@@ -143,6 +202,43 @@ class _InstructionDetailsViewState
           return const LoadingRoundsView();
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.edit),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditInstructionView(
+                instruction: widget.instruction,
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
+
+  Color _getPriorityColor(String? priorityName) {
+    switch (priorityName) {
+      case 'Low':
+        return Colors.green;
+      case 'Medium':
+        return Colors.orange;
+      case 'High':
+        return Colors.red;
+      default:
+        return Colors.black;
+    }
+  }
+
+  // Color _getStatusColor(String? activeStatus) {
+  //   switch (activeStatus) {
+  //     case 'Inactive':
+  //       return Colors.red;
+  //     case 'Active':
+  //       return Colors.green;
+  //     default:
+  //       return Colors.black;
+  //   }
+  // }
 }

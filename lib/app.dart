@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:plant_ops_tracker/globals.dart';
 import 'package:plant_ops_tracker/views/bottom_nav_views/instructions/instructions_main_view.dart';
-import 'package:plant_ops_tracker/views/create/create_instructions/components/add_steps_view.dart';
 import 'package:plant_ops_tracker/views/login/sign_in_view.dart';
 import 'package:plant_ops_tracker/views/navigation/scaffold_with_stateful_shell_route.dart';
 import 'package:plant_ops_tracker/views/bottom_nav_views/audits/audits_main_view.dart';
@@ -79,14 +78,14 @@ final _router = GoRouter(
         ),
       ],
     ),
-    GoRoute(
-      path: '/add-steps',
-      pageBuilder: (context, state) => MaterialPage(
-          key: state.pageKey,
-          child: const AddStepsView(
-            initialSteps: [],
-          )),
-    ),
+    // GoRoute(
+    //   path: '/add-steps',
+    //   pageBuilder: (context, state) => MaterialPage(
+    //       key: state.pageKey,
+    //       child: const AddStepsView(
+    //         initialSteps: [],
+    //       )),
+    // ),
 
     /// [Stateful Shell Route]
     StatefulShellRoute.indexedStack(

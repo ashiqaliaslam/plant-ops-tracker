@@ -4,11 +4,12 @@ import 'package:plant_ops_tracker/state/enums/instruction_issuer.dart';
 
 class InstructionIssuerDropdown extends HookWidget {
   final TextEditingController instructionIssuerController;
+  final InstructionIssuer? initialInstructionIssuer;
 
-  const InstructionIssuerDropdown({
-    super.key,
-    required this.instructionIssuerController,
-  });
+  const InstructionIssuerDropdown(
+      {super.key,
+      required this.instructionIssuerController,
+      this.initialInstructionIssuer});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class InstructionIssuerDropdown extends HookWidget {
         labelText: 'Instruction Issuer',
         hintText: 'Select Instruction Issuer',
       ),
+      value: initialInstructionIssuer,
       items: InstructionIssuer.values.map((issuer) {
         return DropdownMenuItem<InstructionIssuer>(
           value: issuer,

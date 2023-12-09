@@ -24,6 +24,7 @@ class CurrentAuditsView extends ConsumerWidget {
       },
       child: audits.when(
         data: (audits) {
+          // dismissKeyboard();
           if (audits.isEmpty) {
             return const EmptyContentsWithTextAnimationView(
               text: Strings.noAudits,

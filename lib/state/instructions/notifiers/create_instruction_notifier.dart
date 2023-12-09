@@ -5,6 +5,7 @@ import 'package:plant_ops_tracker/state/constants/firebase_collection_name.dart'
 import 'package:plant_ops_tracker/state/enums/department.dart';
 import 'package:plant_ops_tracker/state/enums/instruction_issuer.dart';
 import 'package:plant_ops_tracker/state/enums/priority.dart';
+import 'package:plant_ops_tracker/state/instructions/models/instruction_id.dart';
 import 'package:plant_ops_tracker/state/instructions/models/instruction_payload.dart';
 
 // class ImageUploadNotifier extends StateNotifier<IsLoading>
@@ -21,7 +22,7 @@ class CreateInstructionNotifier extends StateNotifier<IsLoading> {
     required InstructionIssuer? instructionIssuer,
     required PriorityLevel? priority,
     required bool isActive,
-    required List<String?> steps,
+    // required List<String?> steps,
   }) async {
     isLoading = true;
 
@@ -34,11 +35,45 @@ class CreateInstructionNotifier extends StateNotifier<IsLoading> {
         instructionIssuer: instructionIssuer,
         priority: priority,
         isActive: isActive,
-        steps: steps,
+        // steps: steps,
       );
       await FirebaseFirestore.instance
           .collection(FirebaseCollectionName.instructions)
           .add(instructionPayload);
+      return true;
+    } catch (_) {
+      return false;
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  Future<bool> updateInstruction({
+    required InstructionId instructionId,
+    required String userId,
+    required String title,
+    required String description,
+    required List<Department?> department,
+    required InstructionIssuer? instructionIssuer,
+    required PriorityLevel? priority,
+    required bool isActive,
+  }) async {
+    isLoading = true;
+
+    try {
+      final instructionPayLoad = InstructionPayload(
+        userId: userId,
+        title: title,
+        description: description,
+        department: department,
+        instructionIssuer: instructionIssuer,
+        priority: priority,
+        isActive: isActive,
+      );
+      await FirebaseFirestore.instance
+          .collection(FirebaseCollectionName.instructions)
+          .doc(instructionId)
+          .update(instructionPayLoad);
       return true;
     } catch (_) {
       return false;
